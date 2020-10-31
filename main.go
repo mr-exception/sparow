@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// handler function handles all requests from web
 func handler(w http.ResponseWriter, r *http.Request) {
 	type HeartBeat struct {
 		Ok   bool  `json:"ok"`
@@ -22,6 +23,7 @@ func handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, `%s`, responseText)
 }
 
+// main project function
 func main() {
 	fmt.Printf("started service on port %d\n", 8080)
 	http.HandleFunc("/heart-beat", handler)
