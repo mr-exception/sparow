@@ -1,0 +1,36 @@
+version: "3.1"
+services:
+  pgsql:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "root_password"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "sinkron"
+    volumes:
+      - ./pgsql-data:/var/lib/postgresql/data
+    networks:
+      - sinkron-core
+  adminer:
+    image: adminer:latest
+    restart: always
+    environment:
+      ADMINER_DESIGN: "mvt"
+    ports:
+      - 5050:8080
+    networks:
+      - sinkron-core
+  core:
+    image: golang:latest
+    restart: always
+    volumes:
+      - ./app:/go/src/app
+    command: bash -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run install/main.go && app"
+    ports:
+      - 5000:8080
+    networks:
+      - sinkron-core
+
+networks:
+  sinkron-core:
+    external: false
