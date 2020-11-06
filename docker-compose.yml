@@ -39,8 +39,8 @@ services:
       PGSQL_DATABASE: "sparow"
       HTTP_PORT: 8080
     volumes:
-      - ./app:/go/src/app
-    command: bash -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run install/main.go && tail -F anything"
+      - ./src:/go/src
+    command: bash -c "cd /go/src/install && go get -d -v ./... && go install -v ./... && go run . && tail -F anything"
     ports:
       - 5000:8080
     networks:
