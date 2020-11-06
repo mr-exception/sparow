@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -25,7 +26,8 @@ func handler(w http.ResponseWriter, r *http.Request) {
 
 // main project function
 func main() {
-	fmt.Printf("started service on port %d\n", 8080)
+	targetPort := os.Getenv("HTTP_PORT")
+	fmt.Printf("started service on port %s\n", targetPort)
 	http.HandleFunc("/heart-beat", handler)
-	log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":"+targetPort, nil))
 }
