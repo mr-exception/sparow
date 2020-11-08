@@ -363,7 +363,7 @@ zend.enable_gc = On
 
 ; Allows to include or exclude arguments from stack traces generated for exceptions
 ; Default: Off
-; In production, it is recommended to turn this setting on to prohibit the output 
+; In production, it is recommended to turn this setting on to prohibit the output
 ; of sensitive information in stack traces
 zend.exception_ignore_args = On
 
@@ -931,7 +931,7 @@ default_socket_timeout = 60
 extension=pdo_mysql
 ;extension=pdo_oci
 ;extension=pdo_odbc
-;extension=pdo_pgsql
+extension=pdo_pgsql
 ;extension=pdo_sqlite
 ;extension=pgsql
 ;extension=shmop

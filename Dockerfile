@@ -26,7 +26,7 @@ RUN apt update
 RUN apt install wget curl unzip -y
 
 # install gd packages
-RUN apt-get update && apt-get install -y \
+RUN apt-get install -y \
     libfreetype6-dev \
     libjpeg62-turbo-dev \
     libpng-dev \
@@ -34,7 +34,10 @@ RUN apt-get update && apt-get install -y \
     && docker-php-ext-install -j$(nproc) gd
 
 # install core pecl packages
-RUN apt-get update && apt-get install -y  zlib1g-dev
+RUN apt-get install -y  zlib1g-dev
+
+# install postgres packages
+RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
 # install ext and ext-zip packages
 RUN apt-get install -y \

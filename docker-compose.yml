@@ -1,30 +1,27 @@
 version: "3.1"
 services:
-  # pgsql:
-  #   container_name: pgsql
-  #   image: postgres:latest
-  #   restart: always
-  #   environment:
-  #     POSTGRES_PASSWORD: "root_password"
-  #     POSTGRES_USER: "root"
-  #     POSTGRES_DB: "sparow"
-  #   ports:
-  #     - 5432:5432
-  #   volumes:
-  #     - ../pgsql-data:/var/lib/postgresql/data
-  #   logging:
-  #     driver: "none"
-  #   networks:
-  #     - sparow-core
+  # postgres service, you can comment it if you aleardy have a postgress instance to connect
+  pgsql:
+    container_name: pgsql
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: "root_password"
+      POSTGRES_USER: "root"
+      POSTGRES_DB: "sparow"
+    ports:
+      - 5432:5432
+    volumes:
+      - ../pgsql-data:/var/lib/postgresql/data
+    logging:
+      driver: "none"
+    networks:
+      - sparow-core
+  # main service of sparow
   core:
     container_name: core
     build: .
     restart: always
-    environment:
-      PGSQL_HOST: "pgsql"
-      PGSQL_USER: "root"
-      PGSQL_PASSWORD: "root_password"
-      PGSQL_DATABASE: "sparow"
     volumes:
       - ./:/var/www/html/:delegated
     command: bash -c "cd /var/www/html && ./install.sh"
