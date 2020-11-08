@@ -28,23 +28,23 @@ services:
   #     driver: "none"
   #   networks:
   #     - sinkron-core
-  core:
-    container_name: core
-    image: golang:latest
-    restart: always
-    environment:
-      PGSQL_HOST: "pgsql"
-      PGSQL_USER: "root"
-      PGSQL_PASSWORD: "root_password"
-      PGSQL_DATABASE: "sparow"
-      HTTP_PORT: 8080
-    volumes:
-      - ./src:/go/src
-    command: bash -c "cd /go/src/install && go get -d -v ./... && go install -v ./... && go run . && tail -F anything"
-    ports:
-      - 5000:8080
-    networks:
-      - sinkron-core
+  # core:
+  #   container_name: core
+  #   image: golang:latest
+  #   restart: always
+  #   environment:
+  #     PGSQL_HOST: "pgsql"
+  #     PGSQL_USER: "root"
+  #     PGSQL_PASSWORD: "root_password"
+  #     PGSQL_DATABASE: "sparow"
+  #     HTTP_PORT: 8080
+  #   volumes:
+  #     - ./src:./
+  #   command: bash -c "cd /go/src/install && go get -d -v ./... && go install -v ./... && go run . && tail -F anything"
+  #   ports:
+  #     - 5000:8080
+  #   networks:
+  #     - sinkron-core
 
 networks:
   sinkron-core:
