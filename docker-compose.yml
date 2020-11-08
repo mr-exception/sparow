@@ -15,22 +15,10 @@ services:
   #   logging:
   #     driver: "none"
   #   networks:
-  #     - sinkron-core
-  # adminer:
-  #   container_name: adminer
-  #   image: adminer:latest
-  #   restart: always
-  #   environment:
-  #     ADMINER_DESIGN: "mvt"
-  #   ports:
-  #     - 5050:8080
-  #   logging:
-  #     driver: "none"
-  #   networks:
-  #     - sinkron-core
+  #     - sparow-core
   core:
     container_name: core
-    build: ./docker
+    build: .
     restart: always
     environment:
       PGSQL_HOST: "pgsql"
@@ -38,13 +26,13 @@ services:
       PGSQL_PASSWORD: "root_password"
       PGSQL_DATABASE: "sparow"
     volumes:
-      - ./:/var/www/html
+      - ./:/var/www/html/:delegated
     command: bash -c "cd /var/www/html && ./install.sh"
     ports:
       - 5000:80
     networks:
-      - sinkron-core
+      - sparow-core
 
 networks:
-  sinkron-core:
+  sparow-core:
     external: false
