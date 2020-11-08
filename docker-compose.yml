@@ -1,21 +1,21 @@
 version: "3.1"
 services:
-  pgsql:
-    container_name: pgsql
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: "root_password"
-      POSTGRES_USER: "root"
-      POSTGRES_DB: "sparow"
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pgsql-data:/var/lib/postgresql/data
-    logging:
-      driver: "none"
-    networks:
-      - sinkron-core
+  # pgsql:
+  #   container_name: pgsql
+  #   image: postgres:latest
+  #   restart: always
+  #   environment:
+  #     POSTGRES_PASSWORD: "root_password"
+  #     POSTGRES_USER: "root"
+  #     POSTGRES_DB: "sparow"
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - ../pgsql-data:/var/lib/postgresql/data
+  #   logging:
+  #     driver: "none"
+  #   networks:
+  #     - sinkron-core
   # adminer:
   #   container_name: adminer
   #   image: adminer:latest
@@ -28,23 +28,22 @@ services:
   #     driver: "none"
   #   networks:
   #     - sinkron-core
-  # core:
-  #   container_name: core
-  #   image: golang:latest
-  #   restart: always
-  #   environment:
-  #     PGSQL_HOST: "pgsql"
-  #     PGSQL_USER: "root"
-  #     PGSQL_PASSWORD: "root_password"
-  #     PGSQL_DATABASE: "sparow"
-  #     HTTP_PORT: 8080
-  #   volumes:
-  #     - ./src:./
-  #   command: bash -c "cd /go/src/install && go get -d -v ./... && go install -v ./... && go run . && tail -F anything"
-  #   ports:
-  #     - 5000:8080
-  #   networks:
-  #     - sinkron-core
+  core:
+    container_name: core
+    build: ./docker
+    restart: always
+    environment:
+      PGSQL_HOST: "pgsql"
+      PGSQL_USER: "root"
+      PGSQL_PASSWORD: "root_password"
+      PGSQL_DATABASE: "sparow"
+    volumes:
+      - ./:/var/www/html
+    command: bash -c "cd /var/www/html && ./install.sh"
+    ports:
+      - 5000:80
+    networks:
+      - sinkron-core
 
 networks:
   sinkron-core:
