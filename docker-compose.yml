@@ -1,51 +1,38 @@
 version: "3.1"
 services:
-  pgsql:
-    container_name: pgsql
-    image: postgres:latest
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: "root_password"
-      POSTGRES_USER: "root"
-      POSTGRES_DB: "sparow"
-    ports:
-      - 5432:5432
-    volumes:
-      - ./pgsql-data:/var/lib/postgresql/data
-    logging:
-      driver: "none"
-    networks:
-      - sinkron-core
-  # adminer:
-  #   container_name: adminer
-  #   image: adminer:latest
+  # pgsql:
+  #   container_name: pgsql
+  #   image: postgres:latest
   #   restart: always
   #   environment:
-  #     ADMINER_DESIGN: "mvt"
+  #     POSTGRES_PASSWORD: "root_password"
+  #     POSTGRES_USER: "root"
+  #     POSTGRES_DB: "sparow"
   #   ports:
-  #     - 5050:8080
+  #     - 5432:5432
+  #   volumes:
+  #     - ../pgsql-data:/var/lib/postgresql/data
   #   logging:
   #     driver: "none"
   #   networks:
-  #     - sinkron-core
+  #     - sparow-core
   core:
     container_name: core
-    image: golang:latest
+    build: .
     restart: always
     environment:
       PGSQL_HOST: "pgsql"
       PGSQL_USER: "root"
       PGSQL_PASSWORD: "root_password"
       PGSQL_DATABASE: "sparow"
-      HTTP_PORT: 8080
     volumes:
-      - ./app:/go/src/app
-    command: bash -c "cd /go/src/app && go get -d -v ./... && go install -v ./... && go run install/main.go && tail -F anything"
+      - ./:/var/www/html/:delegated
+    command: bash -c "cd /var/www/html && ./install.sh"
     ports:
-      - 5000:8080
+      - 5000:80
     networks:
-      - sinkron-core
+      - sparow-core
 
 networks:
-  sinkron-core:
+  sparow-core:
     external: false
