@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -25,9 +25,30 @@ class User extends Authenticatable
         'phone_verified_at' => 'datetime',
         'last_login' => 'datetime',
     ];
-
+    /**
+     * returns the public url on avatar
+     */
     public function getAvatarPublicUrl(): string
     {
         return (env('AWS_PATH') . '/' . $this->avatar);
+    }
+    /**
+     * updates avatar from given file
+     */
+    public function updateAvatar($file): bool
+    {
+        $current = $this->avatar;
+        $this->avatar = Storage::cloud()->put('/avatars', $file);
+        $this->save();
+        Storage::cloud()->delete($current);
+        return true;
+    }
+    /**
+     * updates avatar from a url
+     */
+    public function updateAvatarFromUrl(string $url): bool
+    {
+        $contents = file_get_contents($url);
+        return $this->updateAvatar($contents);
     }
 }
