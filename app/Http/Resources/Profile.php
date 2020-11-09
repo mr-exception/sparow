@@ -24,7 +24,8 @@ class Profile extends JsonResource
                 'number' => $this->phone,
                 'verified' => $this->phone_verified_at != 0,
                 'verified_at' => $this->when($this->phone_verified_at != 0, 'phone_verified_at'),
-            ]
+            ],
+            'avatar' => $this->getAvatarPublicUrl(),
         ];
     }
 }
