@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\Api\Register;
+namespace App\Http\Requests\Api\Plain;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class Plain extends FormRequest
+class Login extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +24,8 @@ class Plain extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|string|unique:users|max:64',
+            'username' => 'required|string|max:64',
             'password' => 'required|string',
-            'email' => 'required|email|max:64',
-            'phone' => 'nullable|string|max:20',
-            'avatar' => 'nullable|file|max:2500'
         ];
     }
 }
