@@ -9,9 +9,10 @@ class Profile extends JsonResource
 {
     public $collects = User::class;
     public $preserveKeys = true;
+    public static $wrap = 'user';
     public function toArray($request)
     {
-        return [
+        $result = [
             'id' => $this->id,
             'username' => $this->username,
             'password' => $this->password,
@@ -27,5 +28,17 @@ class Profile extends JsonResource
             ],
             'avatar' => $this->getAvatarPublicUrl(),
         ];
+        foreach ($this->data as $key => $value) {
+            $result[$key] = $value;
+        }
+        return $result;
+    }
+
+    public function __construct($resource, $data = [])
+    {
+        parent::__construct($resource);
+        $this->resource = $resource;
+
+        $this->data = $data;
     }
 }

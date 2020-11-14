@@ -17,7 +17,11 @@ class Plain extends Controller
         if (!$user)
             return abort(401);
         else {
-            return Profile::make($user);
+            $token = $user->createToken('example client');
+            return new Profile($user, [
+                'access_token' => $token->accessToken,
+                'expires_at' => $token->token->expires_at->timestamp,
+            ]);
         }
     }
     public function register(RegisterRequest $request)
@@ -29,6 +33,10 @@ class Plain extends Controller
             $user->avatar = Storage::disk('arvan-s3')->put('/avatars', $request->file('avatar'));
         }
         $user->save();
-        return Profile::make($user);
+        $token = $user->createToken('example client');
+        return new Profile($user, [
+            'access_token' => $token->accessToken,
+            'expires_at' => $token->token->expires_at->timestamp,
+        ]);
     }
 }

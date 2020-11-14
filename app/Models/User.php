@@ -30,7 +30,9 @@ class User extends Authenticatable
      */
     public function getAvatarPublicUrl(): string
     {
-        return (env('AWS_PATH') . '/' . $this->avatar);
+        if ($this->avatar)
+            return (env('AWS_PATH') . '/' . $this->avatar);
+        else return "sample-avatar.png";
     }
     /**
      * updates avatar from given file
