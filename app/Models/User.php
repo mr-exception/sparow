@@ -3,15 +3,15 @@
 namespace App\Models;
 
 use App\Traits\Uuids;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Storage;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, Uuids;
+    use HasFactory, Notifiable, Uuids, HasApiTokens;
 
     protected $fillable = [
         'username', 'email', 'phone', 'first_name', 'last_name', 'avatar', 'phone_verified_at', 'email_verified_at', 'last_login', 'status'
@@ -30,7 +30,9 @@ class User extends Authenticatable
      */
     public function getAvatarPublicUrl(): string
     {
-        return (env('AWS_PATH') . '/' . $this->avatar);
+        if ($this->avatar)
+            return (env('AWS_PATH') . '/' . $this->avatar);
+        else return "sample-avatar.png";
     }
     /**
      * updates avatar from given file
