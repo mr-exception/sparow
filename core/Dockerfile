@@ -48,19 +48,10 @@ RUN apt-get install -y \
 # install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# copy the core project into image
-# ADD ./ /var/www/html/
+# copy and install packages
+WORKDIR /var/www/html/
+COPY ./ ./
+RUN composer install
+RUN chown -R www-data:www-data /var/www/html
 
-# navigate to core project and install packages
-# RUN cd /var/www/html/core/production && composer install
-
-# set www dir permission
-# RUN chown -R www-data:www-data /var/www
-
-# send and config .env file into image
-# ADD ./docker/config/.env /var/www/html/core/production/.env
-# RUN cd /var/www/html/core/production && php artisan key:generate
-
-# define db
-# RUN cd /var/www/html/core/production && php artisan migrate:fresh --seed
-# RUN cd /var/www/html/core/production && php artisan passport:install
+CMD ["/var/www/html/install.sh"]
