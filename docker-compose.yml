@@ -27,7 +27,7 @@ services:
       - 5000:80
     networks:
       - sparow-core
-    depends_on: 
+    depends_on:
       - pgsql
   # public web app
   public-webapp:
