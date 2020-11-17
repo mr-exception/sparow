@@ -5,9 +5,9 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Login from "./containers/Login";
-import Register from "./containers/Register";
-import ResetPassword from "./containers/ResetPassword";
+import Login from "./containers/Login/Component";
+import Register from "./containers/Register/Component";
+import ResetPassword from "./containers/ResetPassword/Component";
 
 const Component = () => {
   return (
