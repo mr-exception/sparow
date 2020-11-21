@@ -1,0 +1,42 @@
+.input {
+  visibility: visible;
+  height: 56px;
+  border-radius: 4px 4px 0 0;
+  display: inline-flex;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 4px;
+  padding: 16px;
+  width: 100%;
+}
+.label {
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.009375em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  position: absolute;
+  transform-origin: left top;
+  line-height: 1.15rem;
+  will-change: transform;
+  left: 22px;
+  top: 23px;
+  color: rgba(0, 0, 0, 0.6);
+  transition: transform 150ms;
+}
+.labelOnFocus {
+  transform: scale(0.75);
+  left: 12px;
+  top: 10px;
+}
+.container {
+  visibility: visible;
+  height: 60px;
+  display: inline-flex;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  will-change: opacity, transform, color;
+}

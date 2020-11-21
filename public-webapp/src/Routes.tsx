@@ -5,7 +5,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import Login from "./containers/Login/Component";
+import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Component";
 import ResetPassword from "./containers/ResetPassword/Component";
 
