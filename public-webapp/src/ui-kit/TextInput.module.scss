@@ -1,3 +1,4 @@
+@import "../variables.scss";
 .input {
   visibility: visible;
   height: 56px;
@@ -9,6 +10,12 @@
   margin: 4px;
   padding: 16px;
   width: 100%;
+  border-width: 0px 0px 1px 0px;
+  background: #eee;
+  outline: none;
+}
+.inputOnFocus {
+  border-color: $primary-background;
 }
 .label {
   box-sizing: border-box;
@@ -25,11 +32,12 @@
   top: 23px;
   color: rgba(0, 0, 0, 0.6);
   transition: transform 150ms;
+
+  pointer-events: none;
 }
 .labelOnFocus {
-  transform: scale(0.75);
-  left: 12px;
-  top: 10px;
+  transform: translate(-10px, -13px) scale(0.75);
+  color: $primary-background;
 }
 .container {
   visibility: visible;
@@ -39,4 +47,5 @@
   box-sizing: border-box;
   overflow: hidden;
   will-change: opacity, transform, color;
+  width: 100%;
 }

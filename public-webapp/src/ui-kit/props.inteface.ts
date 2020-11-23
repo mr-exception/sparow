@@ -50,10 +50,26 @@ export interface ICardFooterProps {
 }
 export interface IButtonProps {
   children?: any;
+  onClick?: () => void;
+}
+export interface IIconButtonProps {
+  icon?: any;
+  children?: any;
+  onClick?: () => void;
 }
 export interface ITextInputProps {
   children?: any;
   value?: string;
   onChange?: (value: string) => void;
   label?: string;
+}
+export interface ISpaceProps {
+  height?: number | string;
+  width?: number | string;
+}
+export interface IImageProps {
+  source: any;
+  alt?: string;
+  style?: any;
+  className?: string;
 }

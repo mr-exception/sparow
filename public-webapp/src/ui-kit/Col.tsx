@@ -34,10 +34,12 @@ const Col = ({
     classes.push("col-lg-" + lg);
   }
   if (col) {
-    classes.push("col-xs-" + col);
-    classes.push("col-sm-" + col);
-    classes.push("col-md-" + col);
-    classes.push("col-lg" + col);
+    if (!(xs || sm || md || lg)) {
+      classes.push("col-xs-" + col);
+      classes.push("col-sm-" + col);
+      classes.push("col-md-" + col);
+      classes.push("col-lg" + col);
+    }
   }
   if (xsOffset) {
     classes.push("col-offset-xs-" + xsOffset);
@@ -52,10 +54,12 @@ const Col = ({
     classes.push("col-offset-lg-" + lgOffset);
   }
   if (colOffset) {
-    classes.push("col-xs-offset-" + colOffset);
-    classes.push("col-sm-offset-" + colOffset);
-    classes.push("col-md-offset-" + colOffset);
-    classes.push("col-lg-offset-" + colOffset);
+    if (!(xs || sm || md || lg)) {
+      classes.push("col-xs-offset-" + colOffset);
+      classes.push("col-sm-offset-" + colOffset);
+      classes.push("col-md-offset-" + colOffset);
+      classes.push("col-lg-offset-" + colOffset);
+    }
   }
   return (
     <div className={classes.join(" ")} style={style}>
