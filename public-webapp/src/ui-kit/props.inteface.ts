@@ -62,6 +62,8 @@ export interface ITextInputProps {
   value?: string;
   onChange?: (value: string) => void;
   label?: string;
+  icon?: any;
+  type?: "text" | "password" | "email";
 }
 export interface ISpaceProps {
   height?: number | string;
