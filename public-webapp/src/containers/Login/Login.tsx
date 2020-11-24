@@ -7,7 +7,7 @@ import Row from "ui-kit/Row";
 import Space from "ui-kit/Space";
 import TextInput from "ui-kit/TextInput";
 import Styles from "./Login.module.scss";
-import { FaGoogle, FaGithub, FaTwitter } from "react-icons/fa";
+import { FaGoogle, FaGithub, FaTwitter, FaUser, FaLock } from "react-icons/fa";
 const Component = () => {
   const [username, set_username] = useState("");
   const [password, set_password] = useState("");
@@ -45,6 +45,7 @@ const Component = () => {
                 col={12}
                 style={{
                   paddingLeft: 15,
+
                   height: 50,
                   fontSize: 18,
                   fontWeight: "bold",
@@ -61,6 +62,8 @@ const Component = () => {
                   value={username}
                   onChange={set_username}
                   label="username"
+                  icon={<FaUser />}
+                  type="text"
                 />
               </Col>
               <Col col={12}>
@@ -68,6 +71,8 @@ const Component = () => {
                   value={password}
                   onChange={set_password}
                   label="password"
+                  icon={<FaLock />}
+                  type="password"
                 />
               </Col>
             </Row>
