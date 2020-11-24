@@ -11,14 +11,16 @@
 }
 .input {
   visibility: visible;
-  height: 56px;
-  border-radius: 4px 4px 0 0;
+  height: 48px;
+  border-radius: 4px;
   display: inline-flex;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
   margin: 4px;
-  padding: 16px;
+  padding-left: 20px;
+  padding-top: 8px;
+  padding-right: 40px;
   width: 100%;
   border-width: 0px 0px 1px 0px;
   background: #eee;
@@ -35,8 +37,8 @@
   transform-origin: left top;
   line-height: 1.15rem;
   will-change: transform;
-  left: 22px;
-  top: 23px;
+  left: 30px;
+  top: 22px;
   color: rgba(0, 0, 0, 0.6);
   transition: transform 150ms;
 
@@ -44,13 +46,19 @@
 }
 .container {
   visibility: visible;
-  height: 60px;
+  height: 52px;
   display: inline-flex;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
   will-change: opacity, transform, color;
   width: 100%;
+}
+.icon {
+  position: absolute;
+  right: 17px;
+  top: 20px;
+  transform: scale(1.5);
 }
 .containerOnFocus {
   .label {
@@ -59,5 +67,8 @@
   }
   .input {
     border-color: $primary-background;
+  }
+  .icon {
+    color: $primary-background;
   }
 }

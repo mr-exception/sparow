@@ -62,6 +62,8 @@ export interface ITextInputProps {
   onChange?: (value: string) => void;
   label?: string;
   disabled?: boolean;
+  icon?: any;
+  type?: "text" | "password" | "email";
 }
 export interface ICheckInputProps {
   checked?: boolean;

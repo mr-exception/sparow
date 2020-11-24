@@ -7,6 +7,8 @@ const TextInput = ({
   onChange = () => {},
   label = "label",
   disabled = false,
+  type = "text",
+  icon,
 }: ITextInputProps) => {
   const [container_classes, set_container_classes] = useState<string[]>([
     Styles.container,
@@ -62,8 +64,10 @@ const TextInput = ({
         onBlur={() => {
           set_focused(false);
         }}
+        type={type}
       />
       <label className={Styles.label}>{label}</label>
+      <div className={Styles.icon}>{icon}</div>
     </div>
   );
 };
