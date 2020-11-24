@@ -8,12 +8,14 @@ import Space from "ui-kit/Space";
 import TextInput from "ui-kit/TextInput";
 import CheckInput from "ui-kit/CheckInput";
 import Styles from "./ResetPassword.module.scss";
+import Stepper from "ui-kit/Stepper/Stepper";
 import { FaPhone } from "react-icons/fa";
 import { GrMail } from "react-icons/gr";
 const ResetPassword = () => {
   const [email, set_email] = useState<string>("");
   const [phone, set_phone] = useState<string>("");
   const [method, set_method] = useState<"email" | "phone">("email");
+  const [step, set_step] = useState<number>(0);
   return (
     <Row align="center" verticalAlign="center">
       <Col lg={4} md={6} sm={8} xs={12}>
@@ -53,14 +55,34 @@ const ResetPassword = () => {
                 <h3>
                   <b>Reset Password</b>
                 </h3>
-                <h5>
-                  enter your email or phone number to get a verification message
-                  from sparow
-                </h5>
               </Col>
             </Row>
           </Card.Header>
           <Card.Body>
+            <Row align="start">
+              <Col col={12}>
+                <Stepper
+                  steps={[
+                    { caption: "step 1" },
+                    { caption: "step 2" },
+                    { caption: "step 2" },
+                    { caption: "step 2" },
+                    { caption: "step 2" },
+                    { caption: "step 2" },
+                    { caption: "step 2" },
+                  ]}
+                  index={step}
+                />
+              </Col>
+            </Row>
+            <Row align="start">
+              <Col col={12} style={{ textAlign: "justify" }}>
+                <h4>
+                  enter your email or phone number to get a verification message
+                  from sparow
+                </h4>
+              </Col>
+            </Row>
             <Row align="start">
               <Col col={12}>
                 <CheckInput
@@ -107,7 +129,13 @@ const ResetPassword = () => {
           <Card.Footer>
             <Row style={{ marginTop: 15 }} align="end">
               <Col col={12}>
-                <Button>submit</Button>
+                <Button
+                  onClick={() => {
+                    set_step(step + 1);
+                  }}
+                >
+                  submit
+                </Button>
               </Col>
             </Row>
           </Card.Footer>
