@@ -8,39 +8,51 @@ const TextInput = ({
   label = "label",
   disabled = false,
 }: ITextInputProps) => {
-  const [label_classes, set_label_classes] = useState(
-    `${Styles.label} ${Styles.labelOnFocus}`
-  );
-  const [input_classes, set_input_classes] = useState(
-    `${Styles.input} ${Styles.inputOnFocus}`
-  );
+  const [container_classes, set_container_classes] = useState<string[]>([
+    Styles.container,
+  ]);
   const [focused, set_focused] = useState(false);
 
   if (focused) {
-    if (label_classes !== `${Styles.label} ${Styles.labelOnFocus}`) {
-      set_label_classes(`${Styles.label} ${Styles.labelOnFocus}`);
-    }
-    if (input_classes !== `${Styles.input} ${Styles.inputOnFocus}`) {
-      set_input_classes(`${Styles.input} ${Styles.inputOnFocus}`);
+    if (!container_classes.includes(Styles.containerOnFocus)) {
+      set_container_classes(
+        container_classes.concat([Styles.containerOnFocus])
+      );
     }
   } else {
-    if (value === "") {
-      if (label_classes !== `${Styles.label}`) {
-        set_label_classes(`${Styles.label}`);
+    if (value !== "") {
+      if (!container_classes.includes(Styles.containerOnFocus)) {
+        set_container_classes(
+          container_classes.concat([Styles.containerOnFocus])
+        );
       }
-      if (input_classes !== `${Styles.input}`) {
-        set_input_classes(`${Styles.input}`);
-      }
-    } else if (value !== "") {
-      if (input_classes !== `${Styles.input} ${Styles.inputOnFocus}`) {
-        set_input_classes(`${Styles.input} ${Styles.inputOnFocus}`);
+    } else {
+      if (container_classes.includes(Styles.containerOnFocus)) {
+        set_container_classes(
+          container_classes.filter((className) =>
+            className === Styles.containerOnFocus ? null : className
+          )
+        );
       }
     }
   }
+  if (disabled) {
+    if (!container_classes.includes(Styles.containerDisabled)) {
+      set_container_classes(
+        container_classes.concat([Styles.containerDisabled])
+      );
+    }
+  } else if (container_classes.includes(Styles.containerDisabled)) {
+    set_container_classes(
+      container_classes.filter((className) =>
+        className === Styles.containerDisabled ? null : className
+      )
+    );
+  }
   return (
-    <div className={Styles.container}>
+    <div className={container_classes.join(" ")}>
       <input
-        className={input_classes}
+        className={Styles.input}
         disabled={disabled}
         value={value}
         onChange={(e) => onChange(e.target.value)}
@@ -51,7 +63,7 @@ const TextInput = ({
           set_focused(false);
         }}
       />
-      <label className={label_classes}>{label}</label>
+      <label className={Styles.label}>{label}</label>
     </div>
   );
 };

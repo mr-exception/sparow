@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ICheckInputProps } from "./props.inteface";
 import Styles from "./CheckInput.module.scss";
 
@@ -11,17 +11,22 @@ const TextInput = ({
   checked = false,
 }: ICheckInputProps) => {
   return (
-    <div className={Styles.container}>
+    <div
+      className={Styles.container}
+      onClick={() => {
+        onChange(value);
+      }}
+    >
       <input
         type="radio"
         name={name}
         value={value}
         checked={checked}
         onChange={(e) => {
-          onChange(e.target.value);
+          onChange(value);
         }}
       />
-      {label}
+      <span className={Styles.label}>{label}</span>
     </div>
   );
 };
