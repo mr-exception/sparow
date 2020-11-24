@@ -3,10 +3,10 @@ import { ITextInputProps } from "./props.inteface";
 import Styles from "./TextInput.module.scss";
 
 const TextInput = ({
-  children,
   value = "",
   onChange = () => {},
   label = "label",
+  disabled = false,
 }: ITextInputProps) => {
   const [label_classes, set_label_classes] = useState(
     `${Styles.label} ${Styles.labelOnFocus}`
@@ -41,6 +41,7 @@ const TextInput = ({
     <div className={Styles.container}>
       <input
         className={input_classes}
+        disabled={disabled}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => {

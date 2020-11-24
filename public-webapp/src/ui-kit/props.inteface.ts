@@ -58,10 +58,18 @@ export interface IIconButtonProps {
   onClick?: () => void;
 }
 export interface ITextInputProps {
-  children?: any;
   value?: string;
   onChange?: (value: string) => void;
   label?: string;
+  disabled?: boolean;
+}
+export interface ICheckInputProps {
+  checked?: boolean;
+  name: string;
+  onChange?: (value: string) => void;
+  value?: string;
+  label?: string;
+  disabled?: boolean;
 }
 export interface ISpaceProps {
   height?: number | string;
