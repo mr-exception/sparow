@@ -8,6 +8,8 @@ import Space from "ui-kit/Space";
 import TextInput from "ui-kit/TextInput";
 import CheckInput from "ui-kit/CheckInput";
 import Styles from "./ResetPassword.module.scss";
+import { FaPhone } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
 const ResetPassword = () => {
   const [email, set_email] = useState<string>("");
   const [phone, set_phone] = useState<string>("");
@@ -77,6 +79,7 @@ const ResetPassword = () => {
                   onChange={set_email}
                   label="email address"
                   disabled={method !== "email"}
+                  icon={<GrMail />}
                 />
               </Col>
               <Col col={12}>
@@ -96,6 +99,7 @@ const ResetPassword = () => {
                   onChange={set_phone}
                   label="phone number"
                   disabled={method !== "phone"}
+                  icon={<FaPhone />}
                 />
               </Col>
             </Row>
