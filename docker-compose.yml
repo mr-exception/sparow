@@ -42,6 +42,7 @@ services:
     networks:
       - sparow-core
     stdin_open: true
+    tty: true
 
 networks:
   sparow-core:
