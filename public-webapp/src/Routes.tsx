@@ -19,6 +19,9 @@ const Component = () => {
         <Route path="/register">
           <Register />
         </Route>
+        <Route path="/reset-password/:token">
+          <ResetPassword />
+        </Route>
         <Route path="/reset-password">
           <ResetPassword />
         </Route>
