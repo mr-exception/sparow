@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import Button from "ui-kit/Botton";
 import Card from "ui-kit/Card";
 import Col from "ui-kit/Col";
 import Image from "ui-kit/Image";
 import Row from "ui-kit/Row";
 import Space from "ui-kit/Space";
-import TextInput from "ui-kit/TextInput";
-import CheckInput from "ui-kit/CheckInput";
+import ChangePasswordStep from "./ChangePasswordStep";
 import Styles from "./ResetPassword.module.scss";
-import Stepper from "ui-kit/Stepper/Stepper";
-import { FaPhone } from "react-icons/fa";
-import { GrMail } from "react-icons/gr";
+import SendStep from "./SendStep";
+import VerifyEmailState from "./VerifyEmailState";
+import VerifyPhoneStep from "./VerifyPhoneStep";
 const ResetPassword = () => {
   const [email, set_email] = useState<string>("");
   const [phone, set_phone] = useState<string>("");
   const [method, set_method] = useState<"email" | "phone">("email");
-  const [step, set_step] = useState<number>(0);
+  const [step, set_step] = useState<
+    "not_submitted" | "submitting" | "submitted" | "password_change"
+  >("not_submitted");
+  const submit = () => {
+    set_step("submitted");
+  };
+  const [token, set_token] = useState<string>("");
   return (
     <Row align="center" verticalAlign="center">
       <Col lg={4} md={6} sm={8} xs={12}>
@@ -58,87 +62,39 @@ const ResetPassword = () => {
               </Col>
             </Row>
           </Card.Header>
-          <Card.Body>
-            <Row align="start">
-              <Col col={12}>
-                <Stepper
-                  steps={[
-                    { caption: "step 1" },
-                    { caption: "step 2" },
-                    { caption: "step 2" },
-                    { caption: "step 2" },
-                    { caption: "step 2" },
-                    { caption: "step 2" },
-                    { caption: "step 2" },
-                  ]}
-                  index={step}
-                />
-              </Col>
-            </Row>
-            <Row align="start">
-              <Col col={12} style={{ textAlign: "justify" }}>
-                <h4>
-                  enter your email or phone number to get a verification message
-                  from sparow
-                </h4>
-              </Col>
-            </Row>
-            <Row align="start">
-              <Col col={12}>
-                <CheckInput
-                  name="method"
-                  checked={method === "email"}
-                  value="email"
-                  onChange={(value) => {
-                    set_method(value as "email" | "phone");
-                  }}
-                  label="send message to my email address"
-                />
-              </Col>
-              <Col col={12}>
-                <TextInput
-                  value={email}
-                  onChange={set_email}
-                  label="email address"
-                  disabled={method !== "email"}
-                  icon={<GrMail />}
-                />
-              </Col>
-              <Col col={12}>
-                <CheckInput
-                  name="method"
-                  checked={method === "phone"}
-                  value="phone"
-                  onChange={(value) => {
-                    set_method(value as "email" | "phone");
-                  }}
-                  label="send message to my phone number"
-                />
-              </Col>
-              <Col col={12}>
-                <TextInput
-                  value={phone}
-                  onChange={set_phone}
-                  label="phone number"
-                  disabled={method !== "phone"}
-                  icon={<FaPhone />}
-                />
-              </Col>
-            </Row>
-          </Card.Body>
-          <Card.Footer>
-            <Row style={{ marginTop: 15 }} align="end">
-              <Col col={12}>
-                <Button
-                  onClick={() => {
-                    set_step(step + 1);
-                  }}
-                >
-                  submit
-                </Button>
-              </Col>
-            </Row>
-          </Card.Footer>
+          {step === "not_submitted" && (
+            <SendStep
+              email={email}
+              set_email={(value) => {
+                set_email(value);
+              }}
+              phone={phone}
+              set_phone={(value) => {
+                set_phone(value);
+              }}
+              method={method}
+              set_method={(value) => {
+                set_method(value);
+              }}
+              submit={submit}
+            />
+          )}
+          {step === "submitted" && method === "email" && (
+            <VerifyEmailState email={email} />
+          )}
+          {step === "submitted" && method === "phone" && (
+            <VerifyPhoneStep
+              phone={phone}
+              goBack={() => {
+                set_step("not_submitted");
+              }}
+              submited={(value) => {
+                set_token(value);
+                set_step("password_change");
+              }}
+            />
+          )}
+          {step === "password_change" && <ChangePasswordStep token={token} />}
         </Card>
       </Col>
     </Row>
