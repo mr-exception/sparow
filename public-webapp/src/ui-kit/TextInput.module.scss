@@ -1,0 +1,67 @@
+@import "../variables.scss";
+.input {
+  visibility: visible;
+  height: 48px;
+  border-radius: 4px;
+  display: inline-flex;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin: 4px;
+  padding-left: 20px;
+  padding-top: 8px;
+  padding-right: 40px;
+  width: 100%;
+  border-width: 0px 0px 1px 0px;
+  background: #eee;
+  outline: none;
+}
+.inputOnFocus {
+  border-color: $primary-background;
+}
+.inputIcon {
+  color: #bab9b9;
+  width: 20px;
+  height: 20px;
+}
+.label {
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.009375em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  position: absolute;
+  transform-origin: left top;
+  line-height: 1.15rem;
+  will-change: transform;
+  left: 30px;
+  top: 18px;
+  color: rgba(0, 0, 0, 0.6);
+  transition: transform 150ms;
+
+  pointer-events: none;
+}
+.labelOnFocus {
+  transform: translate(-10px, -13px) scale(0.75);
+  color: $primary-background;
+}
+.container {
+  visibility: visible;
+  height: 52px;
+  display: inline-flex;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  will-change: opacity, transform, color;
+  width: 100%;
+}
+.icon {
+  position: absolute;
+  right: 17px;
+  top: 20px;
+  transform: scale(1.5);
+}
+.iconOnFocus {
+  color: $primary-background;
+}
