@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Client;
 
 
 class RedirectUrl extends Model
@@ -18,7 +19,7 @@ class RedirectUrl extends Model
      */
     public function client()
     {
-        return $this->belongsTo('App\Models\Client', 'oauth_clients_id', 'id');
+        return $this->belongsTo(Client::class, 'oauth_clients_id', 'id');
     }
 
 

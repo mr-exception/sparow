@@ -45,8 +45,8 @@ class CreateOauthClientsTable extends Migration
             $table->uuid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title');
-            $table->string('secret_token', 100)->nullable();
-            $table->string('public_token', 100)->nullable();
+            $table->string('secret_token', 128)->nullable();
+            $table->string('public_token', 256)->nullable();
             $table->string('provider')->nullable();
             $table->boolean('personal_access_client');
             $table->boolean('password_client');
