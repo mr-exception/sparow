@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Passport\Client as PassportClient;
+use App\Models\ValidDomain;
+use App\Models\RedirectUrl;
 
 class Client extends PassportClient
 {
@@ -17,7 +19,7 @@ class Client extends PassportClient
      */
     public function valid_domains()
     {
-        return $this->hasMany('App\Models\ValidDomain');
+        return $this->hasMany(ValidDomain::class);
     }
 
     /**
@@ -25,7 +27,7 @@ class Client extends PassportClient
      */
     public function redirect_urls()
     {
-        return $this->hasMany('App\Models\RedirectUrl');
+        return $this->hasMany(RedirectUrl::class);
     }
 
     //================================================ mutators =========================================================
