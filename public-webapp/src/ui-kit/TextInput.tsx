@@ -19,6 +19,9 @@ const TextInput = ({
   const [icon_classes, set_icon_classes] = useState(
     `${Styles.icon} ${Styles.iconOnFocus}`
   );
+  const [container_classes, set_container_classes] = useState(
+    `${Styles.container} ${Styles.containerOnFocus}`
+  );
   const [focused, set_focused] = useState(false);
 
   if (focused) {
@@ -31,6 +34,11 @@ const TextInput = ({
     if (icon_classes !== `${Styles.icon} ${Styles.iconOnFocus}`) {
       set_icon_classes(`${Styles.icon} ${Styles.iconOnFocus}`);
     }
+    if (
+      container_classes !== `${Styles.container} ${Styles.containerOnFocus}`
+    ) {
+      set_container_classes(`${Styles.container} ${Styles.containerOnFocus}`);
+    }
   } else {
     if (value === "") {
       if (label_classes !== `${Styles.label}`) {
@@ -42,6 +50,9 @@ const TextInput = ({
       if (icon_classes !== `${Styles.icon}`) {
         set_icon_classes(`${Styles.icon}`);
       }
+      if (container_classes !== `${Styles.container}`) {
+        set_container_classes(`${Styles.container}`);
+      }
     } else if (value !== "") {
       if (label_classes !== `${Styles.label} ${Styles.labelOnFocus}`) {
         set_label_classes(`${Styles.label} ${Styles.labelOnFocus}`);
@@ -52,10 +63,15 @@ const TextInput = ({
       if (icon_classes !== `${Styles.icon} ${Styles.iconOnFocus}`) {
         set_icon_classes(`${Styles.icon} ${Styles.iconOnFocus}`);
       }
+      if (
+        container_classes !== `${Styles.container} ${Styles.containerOnFocus}`
+      ) {
+        set_container_classes(`${Styles.container} ${Styles.containerOnFocus}`);
+      }
     }
   }
   return (
-    <div className={Styles.container}>
+    <div className={container_classes}>
       <input
         className={input_classes}
         value={value}
