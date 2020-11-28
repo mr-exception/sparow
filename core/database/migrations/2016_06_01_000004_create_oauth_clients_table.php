@@ -42,8 +42,7 @@ class CreateOauthClientsTable extends Migration
     {
         $this->schema->create('oauth_clients', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->uuid('user_id');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->uuid('user_id')->nullable()->index();
             $table->string('title');
             $table->string('secret_token', 128)->nullable();
             $table->string('public_token', 256)->nullable();
