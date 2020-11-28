@@ -19,13 +19,14 @@ const Component = () => {
       <Col lg={4} md={6} sm={8} xs={12}>
         <Space height="45px" />
         <Card>
+          {/* start of card header */}
           <Card.Header>
             <Row align="center">
               <Col col={12}>
                 <Image
                   source="/assets/sparrow-logo.png"
                   alt="logo"
-                  className={Styles.applicationImage}
+                  className={Styles.logoImage}
                 />
               </Col>
               <Col col={12} className={Styles.logoText}>
@@ -36,6 +37,9 @@ const Component = () => {
               </Col>
             </Row>
           </Card.Header>
+          {/* end of card header */}
+
+          {/* start of card body */}
           <Card.Body>
             <Row align="start">
               <Col col={12}>
@@ -84,6 +88,9 @@ const Component = () => {
               </Col>
             </Row>
           </Card.Body>
+          {/* end of card body */}
+
+          {/* start of card footer */}
           <Card.Footer>
             <Row style={{ marginTop: 15 }}>
               <Col lg={8} md={8} sm={12} xs={12}>
@@ -110,6 +117,7 @@ const Component = () => {
               </Col>
             </Row>
           </Card.Footer>
+          {/* end of card footer */}
         </Card>
       </Col>
     </Row>
