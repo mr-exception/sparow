@@ -33,9 +33,18 @@
   --mdc-ripple-fg-translate-start: 0;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   will-change: transform, opacity;
-  height: 36px;
+  height: 52px;
   background-color: var(--mdc-theme-primary, $primary-background);
   color: var(--mdc-theme-on-primary, $primary-text);
   --mdc-ripple-fg-opacity: 0.24;
   margin: 4px;
+}
+
+.btnBlock{
+  width:100%;
+  margin:auto !important;
+}
+
+.btnRound{
+
 }

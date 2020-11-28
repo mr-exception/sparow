@@ -87,7 +87,7 @@ const Component = () => {
                 />
               </Col>
               <Col col={12}>
-                <Button>Register</Button>
+                <Button fullWidth={true}>Register</Button>
               </Col>
             </Row>
           </Card.Body>
@@ -108,13 +108,6 @@ const Component = () => {
                     <Button>
                       <FaTwitter />
                     </Button>
-                  </Col>
-                </Row>
-              </Col>
-              <Col lg={4} md={4} sm={12} xs={12}>
-                <Row align="end">
-                  <Col col={12}>
-                    <Button>Register</Button>
                   </Col>
                 </Row>
               </Col>

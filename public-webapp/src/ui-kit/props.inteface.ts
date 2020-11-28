@@ -50,11 +50,14 @@ export interface ICardFooterProps {
 }
 export interface IButtonProps {
   children?: any;
+  // if button is full width or not
+  fullWidth?: boolean;
   onClick?: () => void;
 }
 export interface IIconButtonProps {
   icon?: any;
   children?: any;
+  round?: boolean;
   onClick?: () => void;
 }
 export interface ITextInputProps {
