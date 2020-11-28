@@ -47,15 +47,15 @@ const Component = () => {
                   value={username}
                   onChange={set_username}
                   label="Username"
-                  icon={
-                    <IconContext.Provider
-                      value={{ color: "blue", size: "10px" }}
-                    >
-                      <div>
-                        <FaUser />
-                      </div>
-                    </IconContext.Provider>
-                  }
+                  // icon={
+                  //   <IconContext.Provider
+                  //     value={{ color: "blue", size: "10px" }}
+                  //   >
+                  //     <div>
+                  //       <FaUser />
+                  //     </div>
+                  //   </IconContext.Provider>
+                  // }
                   type="text"
                 />
               </Col>
@@ -64,7 +64,7 @@ const Component = () => {
                   value={email}
                   onChange={set_email}
                   label="Email"
-                  icon={<FaLock />}
+                  // icon={<FaLock />}
                   type="email"
                 />
               </Col>
@@ -73,7 +73,7 @@ const Component = () => {
                   value={phone_number}
                   onChange={set_phone_number}
                   label="Phone Number"
-                  icon={<FaLock />}
+                  // icon={<FaLock />}
                   type="text"
                 />
               </Col>
@@ -82,9 +82,12 @@ const Component = () => {
                   value={password}
                   onChange={set_password}
                   label="Password"
-                  icon={<FaLock />}
+                  // icon={<FaLock />}
                   type="password"
                 />
+              </Col>
+              <Col col={12}>
+                <Button>Register</Button>
               </Col>
             </Row>
           </Card.Body>

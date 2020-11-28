@@ -60,6 +60,15 @@
 .containerOnFocus{
   border-color: $primary-background;
 }
+
+.isValid{
+  border-color: $is-valid;
+}
+
+.isInvalid{
+  border-color: $is-invalid;
+}
+
 .icon {
   position: absolute;
   right: 17px;

@@ -63,10 +63,13 @@ const TextInput = ({
       if (icon_classes !== `${Styles.icon} ${Styles.iconOnFocus}`) {
         set_icon_classes(`${Styles.icon} ${Styles.iconOnFocus}`);
       }
+
+      // this is for now
+      // later logic for real-time validation will be added here
       if (
-        container_classes !== `${Styles.container} ${Styles.containerOnFocus}`
+        container_classes == `${Styles.container} ${Styles.containerOnFocus}`
       ) {
-        set_container_classes(`${Styles.container} ${Styles.containerOnFocus}`);
+        set_container_classes(`${Styles.container}`);
       }
     }
   }
