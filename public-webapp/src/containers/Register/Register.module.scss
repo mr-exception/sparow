@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+.logoText{
+  font-size: 50px;
+  color: $text-orange ;
+  font-weight: 500;
+}
+
+.descriptionText{
+  font-size: 18px;
+  color: $text-grey;
+  font-weight: 200;
+  margin-top: 20px;
+}
