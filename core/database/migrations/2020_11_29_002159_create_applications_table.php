@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateValidDomainsTable extends Migration
+class CreateApplicationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateValidDomainsTable extends Migration
      */
     public function up()
     {
-        Schema::create('valid_domains', function (Blueprint $table) {
+        Schema::create('applications', function (Blueprint $table) {
             $table->uuid('id');
-            $table->text('url');
-            $table->uuid('application_id')->index();
+            $table->string('title', 128);
+            $table->string('description', 256)->nullable();
+            $table->string('secret_token', 128)->nullable();
+            $table->string('public_token', 256)->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +30,6 @@ class CreateValidDomainsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('valid_domains');
+        Schema::dropIfExists('applications');
     }
 }

@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Client;
-
+use App\Traits\Uuids;
 
 class RedirectUrl extends Model
 {
-    use HasFactory;
+    use HasFactory, Uuids;
     protected $table = 'redirect_urls';
 
     //================================================ relationships =========================================================

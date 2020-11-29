@@ -62,4 +62,10 @@ COPY ./ ./
 RUN composer install
 RUN chown -R www-data:www-data /var/www/html
 
+# install npm packages
+RUN apt-get install -y gnupg2
+RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_15.x | bash -
+RUN apt-get install nodejs -y
+RUN npm i
+
 CMD ["/var/www/html/install.sh"]
