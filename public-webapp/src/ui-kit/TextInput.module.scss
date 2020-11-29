@@ -24,7 +24,7 @@
 }
 .label {
   box-sizing: border-box;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.009375em;
   text-decoration: inherit;
@@ -33,7 +33,7 @@
   transform-origin: left top;
   line-height: 1.15rem;
   will-change: transform;
-  left: 30px;
+  left: 16px;
   top: 16px;
   color: rgba(0, 0, 0, 0.6);
   transition: transform 150ms;

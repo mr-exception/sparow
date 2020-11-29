@@ -52,12 +52,12 @@ export interface IButtonProps {
   children?: any;
   // if button is full width or not
   fullWidth?: boolean;
+  round?: boolean;
   onClick?: () => void;
 }
 export interface IIconButtonProps {
   icon?: any;
   children?: any;
-  round?: boolean;
   onClick?: () => void;
 }
 export interface ITextInputProps {
@@ -77,4 +77,11 @@ export interface IImageProps {
   alt?: string;
   style?: any;
   className?: string;
+}
+
+export interface ILinkProps {
+  children?: any;
+  url: string;
+  style?: any;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }

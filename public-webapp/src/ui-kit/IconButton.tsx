@@ -3,6 +3,6 @@ import { IIconButtonProps } from "./props.inteface";
 import Styles from "./IconButton.module.scss";
 
 const IconButton = ({ children }: IIconButtonProps) => {
-  return <div className={Styles.button}>{children}</div>;
+  return <button className={Styles.button}>{children}</button>;
 };
 export default IconButton;

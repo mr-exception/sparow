@@ -6,6 +6,7 @@ import Image from "ui-kit/Image";
 import Row from "ui-kit/Row";
 import Space from "ui-kit/Space";
 import TextInput from "ui-kit/TextInput";
+import Link from "ui-kit/Link";
 import Styles from "./Register.module.scss";
 import { IconContext } from "react-icons";
 import { FaGoogle, FaGithub, FaTwitter, FaUser, FaLock } from "react-icons/fa";
@@ -86,27 +87,67 @@ const Component = () => {
                   type="password"
                 />
               </Col>
-              <Col col={12}>
+              <Col className={Styles.mt25} col={12}>
                 <Button fullWidth={true}>Register</Button>
+              </Col>
+              <Col
+                col={12}
+                className={
+                  Styles.descriptionText +
+                  " " +
+                  Styles.text14 +
+                  " " +
+                  Styles.textCenter
+                }
+              >
+                Already have An Account?{" "}
+                <Link
+                  style={{
+                    fontWeight: "bold",
+                  }}
+                  url={"#"}
+                >
+                  Sign In
+                </Link>
               </Col>
             </Row>
           </Card.Body>
           {/* end of card body */}
-
           {/* start of card footer */}
           <Card.Footer>
-            <Row style={{ marginTop: 15 }}>
+            <Row align="center">
+              <Col
+                lg={8}
+                md={8}
+                sm={12}
+                xs={12}
+                className={Styles.descriptionText + " " + Styles.text14}
+              >
+                <span className={Styles.signInOptionSeperator}>OR</span>
+              </Col>
               <Col lg={8} md={8} sm={12} xs={12}>
-                <Row align="start">
+                <Row align="center">
                   <Col col={12}>
-                    <Button>
-                      <FaGoogle />
+                    <Button round={true}>
+                      <Image
+                        source="assets/google.svg"
+                        alt="logo"
+                        className={Styles.signInIcon}
+                      />
                     </Button>
-                    <Button>
-                      <FaGithub />
+                    <Button round={true}>
+                      <Image
+                        source="assets/facebook.svg"
+                        alt="logo"
+                        className={Styles.signInIcon}
+                      />
                     </Button>
-                    <Button>
-                      <FaTwitter />
+                    <Button round={true}>
+                      <Image
+                        source="assets/twitter.svg"
+                        alt="logo"
+                        className={Styles.signInIcon}
+                      />
                     </Button>
                   </Col>
                 </Row>
