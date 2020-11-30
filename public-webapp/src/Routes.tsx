@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 import Login from "./containers/Login/Login";
 import Register from "./containers/Register/Component";
-import ResetPassword from "./containers/ResetPassword/Component";
+import ResetPassword from "./containers/ResetPassword/ResetPassword";
 
 const Component = () => {
   return (
@@ -18,6 +18,9 @@ const Component = () => {
         </Route>
         <Route path="/register">
           <Register />
+        </Route>
+        <Route path="/reset-password/:token">
+          <ResetPassword />
         </Route>
         <Route path="/reset-password">
           <ResetPassword />

@@ -3,61 +3,59 @@ import { ITextInputProps } from "./props.inteface";
 import Styles from "./TextInput.module.scss";
 
 const TextInput = ({
-  children,
   value = "",
   onChange = () => {},
   label = "label",
-  icon,
+  disabled = false,
   type = "text",
+  icon,
 }: ITextInputProps) => {
-  const [label_classes, set_label_classes] = useState(
-    `${Styles.label} ${Styles.labelOnFocus}`
-  );
-  const [input_classes, set_input_classes] = useState(
-    `${Styles.input} ${Styles.inputOnFocus}`
-  );
-  const [icon_classes, set_icon_classes] = useState(
-    `${Styles.icon} ${Styles.iconOnFocus}`
-  );
+  const [container_classes, set_container_classes] = useState<string[]>([
+    Styles.container,
+  ]);
   const [focused, set_focused] = useState(false);
 
   if (focused) {
-    if (label_classes !== `${Styles.label} ${Styles.labelOnFocus}`) {
-      set_label_classes(`${Styles.label} ${Styles.labelOnFocus}`);
-    }
-    if (input_classes !== `${Styles.input} ${Styles.inputOnFocus}`) {
-      set_input_classes(`${Styles.input} ${Styles.inputOnFocus}`);
-    }
-    if (icon_classes !== `${Styles.icon} ${Styles.iconOnFocus}`) {
-      set_icon_classes(`${Styles.icon} ${Styles.iconOnFocus}`);
+    if (!container_classes.includes(Styles.containerOnFocus)) {
+      set_container_classes(
+        container_classes.concat([Styles.containerOnFocus])
+      );
     }
   } else {
-    if (value === "") {
-      if (label_classes !== `${Styles.label}`) {
-        set_label_classes(`${Styles.label}`);
+    if (value !== "") {
+      if (!container_classes.includes(Styles.containerOnFocus)) {
+        set_container_classes(
+          container_classes.concat([Styles.containerOnFocus])
+        );
       }
-      if (input_classes !== `${Styles.input}`) {
-        set_input_classes(`${Styles.input}`);
-      }
-      if (icon_classes !== `${Styles.icon}`) {
-        set_icon_classes(`${Styles.icon}`);
-      }
-    } else if (value !== "") {
-      if (label_classes !== `${Styles.label} ${Styles.labelOnFocus}`) {
-        set_label_classes(`${Styles.label} ${Styles.labelOnFocus}`);
-      }
-      if (input_classes !== `${Styles.input} ${Styles.inputOnFocus}`) {
-        set_input_classes(`${Styles.input} ${Styles.inputOnFocus}`);
-      }
-      if (icon_classes !== `${Styles.icon} ${Styles.iconOnFocus}`) {
-        set_icon_classes(`${Styles.icon} ${Styles.iconOnFocus}`);
+    } else {
+      if (container_classes.includes(Styles.containerOnFocus)) {
+        set_container_classes(
+          container_classes.filter((className) =>
+            className === Styles.containerOnFocus ? null : className
+          )
+        );
       }
     }
   }
+  if (disabled) {
+    if (!container_classes.includes(Styles.containerDisabled)) {
+      set_container_classes(
+        container_classes.concat([Styles.containerDisabled])
+      );
+    }
+  } else if (container_classes.includes(Styles.containerDisabled)) {
+    set_container_classes(
+      container_classes.filter((className) =>
+        className === Styles.containerDisabled ? null : className
+      )
+    );
+  }
   return (
-    <div className={Styles.container}>
+    <div className={container_classes.join(" ")}>
       <input
-        className={input_classes}
+        className={Styles.input}
+        disabled={disabled}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onFocus={() => {
@@ -68,8 +66,8 @@ const TextInput = ({
         }}
         type={type}
       />
-      <label className={label_classes}>{label}</label>
-      <div className={icon_classes}>{icon}</div>
+      <label className={Styles.label}>{label}</label>
+      <div className={Styles.icon}>{icon}</div>
     </div>
   );
 };
