@@ -14,10 +14,9 @@ class CreateValidDomainsTable extends Migration
     public function up()
     {
         Schema::create('valid_domains', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->uuid('id');
             $table->text('url');
-            $table->uuid('oauth_clients_id')->index();
-            $table->foreign('oauth_clients_id')->references('id')->on('oauth_clients')->onDelete('cascade');
+            $table->uuid('application_id')->index();
             $table->timestamps();
         });
     }

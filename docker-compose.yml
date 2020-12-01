@@ -15,6 +15,16 @@ services:
       - ./pgsql-data:/var/lib/postgresql/data
     networks:
       - sparow-core
+  # redis database
+  redis:
+    container_name: redis
+    image: redis:4-alpine
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis-data:/data
+    networks:
+      - sparow-core
   # main service of sparow
   core:
     container_name: core
@@ -23,12 +33,15 @@ services:
     volumes:
       - ./core:/var/www/html
       - /var/www/html/vendor
+      - /var/www/html/node_modules
     ports:
       - 5000:80
+      - 6001:6001
     networks:
       - sparow-core
     depends_on:
       - pgsql
+      - redis
   # public web app
   public-webapp:
     container_name: public-webapp
