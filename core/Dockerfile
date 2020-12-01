@@ -28,7 +28,7 @@ RUN apt install -y wget curl unzip supervisor
 
 
 # import background workers
-RUN rm /etc/supervisor/conf.d -r && mkdir -p /var/log/core-queue/
+RUN rm /etc/supervisor/conf.d -r && mkdir -p /var/log/core/
 ADD ./docker/supervisor/conf.d /etc/supervisor/conf.d
 
 # install gd packages
@@ -43,6 +43,9 @@ RUN apt-get install -y \
 RUN apt-get install -y zlib1g-dev
 RUN pecl install redis
 RUN docker-php-ext-enable redis
+
+# install horizon requirement
+RUN docker-php-ext-install pcntl
 
 # install postgres packages
 RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
@@ -63,9 +66,10 @@ RUN composer install
 RUN chown -R www-data:www-data /var/www/html
 
 # install npm packages
-RUN apt-get install -y gnupg2
-RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_15.x | bash -
-RUN apt-get install nodejs -y
-RUN npm i
+# RUN apt-get install -y gnupg2
+# RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_15.x | bash -
+# RUN apt-get install nodejs -y
+# RUN npm i
+# RUN npm i -g laravel-echo-server
 
 CMD ["/var/www/html/install.sh"]
