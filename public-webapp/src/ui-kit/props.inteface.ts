@@ -50,6 +50,8 @@ export interface ICardFooterProps {
 }
 export interface IButtonProps {
   children?: any;
+  fullWidth?: boolean;
+  round?: boolean;
   onClick?: () => void;
 }
 export interface IIconButtonProps {
@@ -82,4 +84,11 @@ export interface IImageProps {
   alt?: string;
   style?: any;
   className?: string;
+}
+
+export interface ILinkProps {
+  children?: any;
+  url: string;
+  style?: any;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
