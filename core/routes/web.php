@@ -1,5 +1,7 @@
 <?php
 
+use App\Events\PlainMessage;
+use App\Jobs\SendEmail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,5 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function () {
-    return 'test';
+    // dispatch(new SendEmail());
+    event(new PlainMessage());
+    return 'done!';
 });

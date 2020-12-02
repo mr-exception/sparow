@@ -1,4 +1,17 @@
 @import "../variables.scss";
+
+.containerDisabled {
+  .label {
+    color: #999 !important;
+  }
+  .input {
+    color: #999 !important;
+    border-color: #999 !important;
+  }
+  .icon {
+    color: #999 !important;
+  }
+}
 .input {
     visibility: visible;
     height: 32px;
@@ -13,14 +26,6 @@
     color: $text-grey;
     font-size: 16px;
     margin-top: 16px;
-}
-.inputOnFocus {
-  border-color: $primary-background;
-}
-.inputIcon {
-  color: #bab9b9;
-  width: 20px;
-  height: 20px;
 }
 .label {
   box-sizing: border-box;
@@ -38,10 +43,6 @@
   color: rgba(0, 0, 0, 0.6);
   transition: transform 150ms;
   pointer-events: none;
-}
-.labelOnFocus {
-  transform: translate(-10px, -13px) scale(0.75);
-  color: $primary-background;
 }
 .container {
   visibility: visible;
@@ -75,6 +76,15 @@
   top: 20px;
   transform: scale(1.5);
 }
-.iconOnFocus {
-  color: $primary-background;
+.containerOnFocus {
+  .label {
+    transform: translate(-10px, -13px) scale(0.75);
+    color: $primary-background;
+  }
+  .input {
+    border-color: $primary-background;
+  }
+  .icon {
+    color: $primary-background;
+  }
 }
