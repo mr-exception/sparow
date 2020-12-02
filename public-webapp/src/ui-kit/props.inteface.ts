@@ -50,7 +50,6 @@ export interface ICardFooterProps {
 }
 export interface IButtonProps {
   children?: any;
-  // if button is full width or not
   fullWidth?: boolean;
   round?: boolean;
   onClick?: () => void;

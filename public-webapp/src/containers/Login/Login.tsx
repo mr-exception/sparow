@@ -15,6 +15,7 @@ const Component = () => {
   const [email, set_email] = useState("");
   const [phone_number, set_phone_number] = useState("");
   const [password, set_password] = useState("");
+  const [state, set_state] = useState<string>("");
   return (
     <Row align="center" verticalAlign="center">
       <Col lg={4} md={6} sm={8} xs={12}>
