@@ -44,9 +44,6 @@ RUN apt-get install -y zlib1g-dev
 RUN pecl install redis
 RUN docker-php-ext-enable redis
 
-# install horizon requirement
-RUN docker-php-ext-install pcntl
-
 # install postgres packages
 RUN apt-get install -y libpq-dev && docker-php-ext-install pdo pdo_pgsql
 
